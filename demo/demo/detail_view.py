@@ -18,9 +18,11 @@ def showdetail(request):
 		
 		title = request.GET['title']
 		answer = db.matchHudongItembyTitle(title)
-		if answer == None:
+		if answer == []:
 			return render(request, "404.html", ctx) 
-			
+		else: 
+			print(answer)
+			answer = answer[0]['p']
 		ctx['detail'] = answer['detail']
 		ctx['title'] = answer['title']
 		image = answer['image']
